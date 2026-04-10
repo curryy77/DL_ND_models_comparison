@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="docs/README_en.md">🇬🇧 English</a> |
-  <a href="docs/README_ru.md">🇷🇺 Русский</a> |
-  <a href="docs/README_de.md">🇩🇪 Deutsch</a> |
-  <a href="docs/README_ja.md">🇯🇵 日本語</a> 
+  <a href="README_en.md">🇬🇧 English</a> |
+  <a href="README_ru.md">🇷🇺 Русский</a> |
+  <a href="README_de.md">🇩🇪 Deutsch</a> |
+  <a href="README_ja.md">🇯🇵 日本語</a> 
 </p>
 
 # Spatial Population Dynamics Models
@@ -49,9 +49,9 @@ Interactive visualization is implemented using **Plotly**, a Python library. Als
 
 Example dashboards for simulations in `data/example`:
 
-![Brownian Bug Dash](assets/bb_example_dash.png)
-![Neighborhood-Dependent Dash](assets/nd_example_dash.png)
-![Dieckmann-Law Dash](assets/dl_example_dash.png)
+![Brownian Bug Dash](../assets/bb_example_dash.png)
+![Neighborhood-Dependent Dash](../assets/nd_example_dash.png)
+![Dieckmann-Law Dash](../assets/dl_example_dash.png)
 
 ---
 
