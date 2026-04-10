@@ -1,3 +1,3 @@
-# Dieckmann-Law and neighborhood-dependent population dynamics models comparison
+# Implementation and Analysis of the Dieckmann-Law Population Dynamics Model: Numerical Analysis and Comparative Study with a Neighborhood-Dependent Model
 
 Work in Progress...
