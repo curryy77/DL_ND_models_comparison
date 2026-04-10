@@ -1,7 +1,7 @@
 <p align="center">
   <a href="docs/README_en.md">🇬🇧 English</a> |
   <a href="docs/README_ja.md">🇯🇵 日本語</a> |
-  <a href="docs/README_fr.md">🇫🇷 Français</a> |
+  <a href="docs/README_fr.md">🇩🇪 Deutsch</a> |
   <a href="docs/README_ru.md">🇷🇺 Русский</a> 
 </p>
 
@@ -29,34 +29,19 @@ The goals are to **implement** spatial stochastic models of population dynamics,
 
 #### Brownian Bug (BB) Model 
 - Individuals move via Brownian motion,
-- Constant birth and death rates:
-$$
-  \lambda = \text{const}, \quad \mu = \text{const},
-$$
+- Constant birth and death rates: $\lambda = \text{const} \quad \mu = \text{const}$,
 
 - No interaction between individuals.
 
 #### Neighborhood-Dependent (ND) Model
 - Brownian motion with local interaction,
-- Birth rate depends on number of neighbors:
-  $$
-  \lambda_i = \lambda_0 - \frac{1}{N_s} N_R^{(i)},
-  $$
+- Birth rate depends on number of neighbors: $\lambda_i = \lambda_0 - \frac{1}{N_s} N_R^{(i)}$,
 - Hard interaction radius $R$.
 
 #### Dieckmann-Law (DL) Model
 - Individuals are **spatially fixed (no movement)**,
-- Interaction via continuous kernel:
-  $$
-  d_i = d_0 + \alpha C_i,
-  $$
-  $$
-  C_i = \sum_j \exp\left(-\frac{r_{ij}^2}{2R_c^2}\right),
-  $$
-- Offspring distributed locally:
-  $$
-  x_{\text{child}} = x_i + \xi, \quad \xi \sim \mathcal{N}(0, \sigma^2).
-  $$
+- Interaction via continuous kernel: $d_i = d_0 + \alpha C_i$, where $C_i = \sum_j \exp\left(-\frac{r_{ij}^2}{2R_c^2}\right)$,
+- Offspring distributed locally: $x_{\text{child}} = x_i + \xi, \quad \xi \sim \mathcal{N}(0, \sigma^2)$.
 
 ---
 ### Visualization
