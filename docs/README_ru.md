@@ -50,9 +50,9 @@
 
 Примеры дашбордов для моделирования в папке `data/example`:
 
-![Brownian Bug Dash](assets/bb_example_dash.png)
-![Neighborhood-Dependent Dash](assets/nd_example_dash.png)
-![Dieckmann-Law Dash](assets/dl_example_dash.png)
+![Brownian Bug Dash](../assets/bb_example_dash.png)
+![Neighborhood-Dependent Dash](../assets/nd_example_dash.png)
+![Dieckmann-Law Dash](../assets/dl_example_dash.png)
 
 ---
 
