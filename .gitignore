@@ -1,0 +1,21 @@
+.DS_Store
+
+# CLion / IntelliJ
+.idea/
+*.iml
+
+# CMake / local builds
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# Local generated reports and dashboards
+data/output/*.html
+
+# Local simulation outputs
+data/output/*.csv
+!data/output/.gitkeep
