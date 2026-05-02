@@ -1,0 +1,82 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{indentfirst}
+
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE Conference Text}
+\end{center}
+
+\section*{Contents (7 min)}
+\begin{enumerate}
+    \item Introduction (2 min)
+    \item Program Implementation (1 min)
+    \item Numerical Analysis of the Dieckmann--Law Model (2 min)
+    \item Comparison with the \textit{neighborhood-dependent} Model (2 min)
+\end{enumerate}
+
+\section*{Introduction (2 min)}
+A population dynamics model in biology is a mathematical description used to predict changes in the size, structure, and density of a population over time. Let us assume that we have an $N \times N$ field area filled with individuals, and a discrete time step $\Delta t$. Each individual reproduces, that is, creates its copy in the field, and dies, that is, disappears from the field, with a certain probability.
+
+There are several approaches to computing population dynamics under given parameters; in this work we consider the Dieckmann--Law model, described in 2000, and the \textit{neighborhood-dependent} model of Hernandez-Garcia and Lopez, described in 2005.
+
+In the \textit{neighborhood-dependent} model (hereinafter --- ND), the birth-rate parameter depends on the number of neighbors in the vicinity of the individual within a given radius. The resulting sum of individuals is divided by the density-sensitivity parameter and is subtracted from the base birth-rate parameter:
+\[
+\lambda_i = \lambda_0 - \frac{1}{N_s} N_R^{(i)}.
+\]
+The death rate is set by a constant value. In the ND model, individuals move along the $x$ and $y$ coordinates in accordance with Brownian motion with diffusion parameter $D$.
+
+In the Dieckmann--Law model, on the contrary, the birth-rate parameter is set by a constant, while the death rate for each individual is calculated through the so-called smooth interaction kernel:
+\[
+d_i = d_0 + \alpha C_i,
+\qquad
+C_i = \sum_j \exp\left(-\frac{r_{ij}^2}{2R_c^2}\right),
+\]
+where $R_c$ is the characteristic interaction radius. The resulting interaction kernel is multiplied by the competition-sensitivity parameter $\alpha$ and is added to the base death rate $d_0$.
+
+Let us note that, unlike the ND model, the Dieckmann--Law model does not provide for Brownian motion of individuals. Nevertheless, during birth the offspring are displaced from the parent by a distance determined by normal noise, for example
+\[
+x_{\text{child}} = x_i + \xi,
+\qquad
+\xi \sim \mathcal{N}(0, \sigma^2),
+\]
+and similarly for the second coordinate. In the ND model, by contrast, offspring appear in the same place where the parent was located.
+
+\section*{Program Implementation (1 min)}
+These spatial stochastic models were implemented through object-oriented programming in the C++ language; visualization, in turn, was created through Python scripts that use the \texttt{plotly} library.
+
+Each individual is represented through a structure that has an identifier, coordinates, and a status (alive or dead). Random numbers in the project are generated through the Mersenne Twister. After the simulation is launched, the results are written into a \texttt{csv} table, where each row records the time, the individual identifier, the coordinates, the status, and the parent identifier.
+
+The asymptotics of the ND and Dieckmann--Law models coincide: both possess an upper bound on the number of processes of order $N^2$, where $N$ is the number of individuals. The actual simulation speed depends very strongly on the population dynamics itself; in the worst case, for example when the birth rate is very high, one speaks of exponential complexity.
+
+\section*{Numerical Analysis of the Dieckmann--Law Model (2 min)}
+Three series of simulations of the Dieckmann--Law model were carried out: the dependence of the dynamics on the characteristic interaction radius and the offspring spread, the dependence of the dynamics on the competition-sensitivity parameter $\alpha$, as well as the dependence of the dynamics on the base birth rate and death rate.
+
+In the first series, a small and a large characteristic interaction radius were chosen together with a small and a large offspring spread. It was found that with a smaller spread and with a larger interaction radius, individuals tend to gather into clusters, while in the opposite case a homogeneous field is formed.
+
+In the second series, the behavior of individuals was considered for different values of the kernel coefficient $\alpha$ and other fixed parameters, when the model was tuned for clustering. With a small competition coefficient tending to zero, the population growth is exponential. With a high competition coefficient, the model falls to a certain low value, but does not go extinct.
+
+At the same time, in the course of the research a stationary value was identified --- this is the value at which the cumulative number of born individuals is equal to the number of dead individuals over the entire time, and the growth of both values is linear. This occurs at $\alpha \approx 0.00258$. All values above this one lead to dynamics similar to the strong-competition regime, and all values below it lead to weak-competition dynamics.
+
+Finally, in the third series, we consider the behavior of individuals at different values of birth rate and death rate. Let us note that even when the birth rate exceeds the death rate, the population still tends toward extinction --- the effect of clustering makes itself felt. It was found that the critical difference under the given parameters is equal to $0.042$. At the same time, the behavior at birth rate $0.40$ and death rate $0.38$ turns out to be more radical and more strongly prone to extinction than the behavior at $0.22$ and $0.20$.
+
+\section*{Comparison with the \textit{neighborhood-dependent} Model (2 min)}
+Here, four simulations of the pair of models, \textit{neighborhood-dependent} and Dieckmann--Law, were carried out.
+
+In the course of the first pair of simulations, the Dieckmann--Law and ND models were tuned so that they produced a ``weak structure'' of the population. It was found that due to the indicator function in the definition of the ND model, clusters are much more stable than with a smooth kernel shell. Also noteworthy is the dynamics of living individuals: in the ND model, the number of living individuals quickly reaches a ceiling, while in the Dieckmann--Law model, although a certain limiting value is also observed, population growth occurs more smoothly.
+
+In the second pair of simulations, the models were tuned for clustering. Here one can note the distinctness of clusters in ND and the greater spread of clusters in the Dieckmann--Law model. Noteworthy is the fact that, when looking at the number of living individuals over time in Dieckmann--Law, one can notice that stable growth is not guaranteed. This is due to the fact that in this model the number of individuals increases the death rate, whereas in ND it only slows down the birth rate.
+
+In the third pair of simulations, the mechanisms of slowing population growth are tested. Thus, the Dieckmann--Law model is tuned to sparsity through a larger offspring spread and a smaller interaction radius, and it can be seen that upon reaching a critical value the dynamics begin to behave unstably, but on average do not exceed a certain level. Let us now tune the ND model to a larger interaction radius and note that we obtain the same clusters, but more distant from one another. From the dynamics, one can see that the number of individuals quickly reaches a certain value and then fluctuates around it.
+
+Finally, in the fourth pair, the behavior of the models is considered in the case of the lower survival boundary. Both dynamics graphs slowly tend to zero; however, one can notice the unstable character of ND in comparison with the smoother character of the curve for the Dieckmann--Law model.
+
+\end{document}
