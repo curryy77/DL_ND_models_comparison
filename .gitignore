@@ -1,10 +1,10 @@
 .DS_Store
 
-# CLion / IntelliJ
+# CLion
 .idea/
 *.iml
 
-# CMake / local builds
+# CMake and local builds
 build/
 cmake-build-*/
 CMakeCache.txt
